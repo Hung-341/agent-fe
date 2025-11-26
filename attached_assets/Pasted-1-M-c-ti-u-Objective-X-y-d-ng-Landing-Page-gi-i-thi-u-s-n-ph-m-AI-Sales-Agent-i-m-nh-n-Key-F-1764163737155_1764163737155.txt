@@ -1,0 +1,51 @@
+1. Mục tiêu (Objective) Xây dựng Landing Page giới thiệu sản phẩm "AI Sales Agent". Điểm nhấn (Key Feature) là trải nghiệm chuyển đổi mượt mà từ giao diện Web tĩnh sang giao diện Chatbot (Conversational UI) để thu thập thông tin báo giá.
+
+2. Luồng người dùng (User Flow)
+
+Bước 1: User truy cập Landing Page (Xem Hero section, Features, Social Proof).
+
+Bước 2: User nhấn nút CTA "Nhận báo giá" hoặc "Tư vấn ngay".
+
+Bước 3:
+
+Không tải lại trang (No page reload).
+
+Giao diện Landing Page mờ đi hoặc trượt xuống.
+
+Giao diện Chatbot xuất hiện (Full-screen hoặc Modal lớn ở trung tâm).
+
+Bước 4: Chatbot tự động chào và bắt đầu hỏi từng câu hỏi (theo kịch bản đã chốt).
+
+Bước 5: User trả lời xong -> Hiển thị thông báo "Đã nhận thông tin" -> Redirect về Thank-you Page hoặc hiển thị kết quả sơ bộ.
+
+giao diện
+A. Landing Page (Trạng thái tĩnh)
+Style: Modern B2B SaaS (Clean, Tech-vibes, Trustworthy).
+
+CTA Button: Cần nổi bật, có hiệu ứng Hover. Nút này là Trigger để kích hoạt Chatbot.
+
+Sticky Button: Một nút bong bóng chat (Floating Action Button) ở góc phải dưới cùng, luôn hiển thị khi scroll, bấm vào cũng kích hoạt luồng Chatbot.
+
+B. Hiệu ứng chuyển cảnh (Transition - Quan trọng)
+Khi nhấn CTA, giao diện Chatbot phải xuất hiện mượt mà (Fade in, Slide up hoặc Scale up).
+
+Cảm giác: Giống như AI đang "thức dậy" để phục vụ người dùng. Tránh cảm giác bị điều hướng sang một trang web khác.
+
+C. Giao diện Chatbot (Conversational Form)
+Đây là phần cốt lõi thay thế cho Form truyền thống.
+
+Layout: Giao diện khung chat tiêu chuẩn (Avatar AI bên trái, User bên phải).
+
+Typing Indicator: Trước khi AI hiện câu hỏi, cần có hiệu ứng "3 chấm đang gõ..." (giả lập delay 500ms - 1s) để tạo cảm giác tự nhiên.
+
+Input Components (Các loại câu trả lời):
+
+Quick Reply Buttons (Chips): Cho các câu hỏi lựa chọn (Ví dụ: [Dưới 50 SKU], [Trên 1000 SKU]). User bấm là gửi luôn, không cần gõ.
+
+Text Field: Cho thông tin Tên, Email, SĐT. Có Validation check đúng định dạng.
+
+Multiple Choice: Checkbox cho câu hỏi chọn kênh (Facebook + Zalo).
+
+Auto-scroll: Khi tin nhắn mới hiện ra, khung chat phải tự động cuộn xuống dưới cùng.
+
+Progress Bar: (Optional) Thanh tiến trình nhỏ trên đầu để user biết còn bao nhiêu câu hỏi nữa.
