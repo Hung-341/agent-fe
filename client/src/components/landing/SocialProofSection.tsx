@@ -39,14 +39,14 @@ const testimonials = [
 ];
 
 const companies = [
-  { name: "Shopee", color: "#EE4D2D" },
-  { name: "Lazada", color: "#0F156D" },
-  { name: "Tiki", color: "#189EFF" },
-  { name: "Sendo", color: "#FF6600" },
-  { name: "VinID", color: "#0A1F6E" },
-  { name: "The Gioi Di Dong", color: "#F7DC00" },
-  { name: "FPT Shop", color: "#FF6600" },
-  { name: "CellphoneS", color: "#D70018" },
+  { name: "MBS", color: "#1E3A8A" },
+  { name: "10X VALUE", color: "#F59E0B" },
+  { name: "OneAds", color: "#EF4444" },
+  { name: "SeniArt", color: "#8B5CF6" },
+  { name: "Mộc Gia – Office & Coworking", color: "#059669" },
+  { name: "MB", color: "#1D4ED8" },
+  { name: "VietinBank", color: "#DC2626" },
+  { name: "FPT Polytechnic", color: "#F97316" },
 ];
 
 export function SocialProofSection() {

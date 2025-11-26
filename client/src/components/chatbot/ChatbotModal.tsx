@@ -38,6 +38,7 @@ type ChatStep = {
 };
 
 const chatScript: ChatStep[] = [
+  // Greeting
   {
     id: "greeting",
     type: "assistant",
@@ -45,78 +46,211 @@ const chatScript: ChatStep[] = [
       "Xin chào! Tôi là AI Sales Agent. Rất vui được hỗ trợ bạn nhận báo giá cho giải pháp AI bán hàng.",
     field: "greeting",
   },
+
+  // Thông tin liên hệ
   {
-    id: "name_prompt",
+    id: "company_name_prompt",
     type: "assistant",
-    message: "Để bắt đầu, cho tôi biết tên của bạn nhé?",
-    field: "name_prompt",
+    message: "Tên công ty của bạn là gì?",
+    field: "company_name_prompt",
   },
   {
-    id: "name",
+    id: "company_name",
+    type: "input",
+    inputType: "text",
+    field: "companyName",
+    placeholder: "Nhập tên công ty...",
+  },
+  {
+    id: "contact_name_prompt",
+    type: "assistant",
+    message: "Mình có thể biết tên của bạn để tiện trao đổi không?",
+    field: "contact_name_prompt",
+  },
+  {
+    id: "contact_name",
     type: "input",
     inputType: "text",
     field: "name",
     placeholder: "Nhập tên của bạn...",
   },
   {
-    id: "sku_question",
+    id: "contact_email_prompt",
     type: "assistant",
-    message:
-      "Cảm ơn bạn! Doanh nghiệp của bạn hiện đang có bao nhiêu sản phẩm (SKU)?",
-    field: "sku_question",
+    message: "Bạn có thể cho mình xin email để gửi thông tin và báo giá?",
+    field: "contact_email_prompt",
   },
   {
-    id: "sku_range",
-    type: "quick_reply",
-    options: ["Dưới 50 SKU", "50 - 200 SKU", "200 - 1000 SKU", "Trên 1000 SKU"],
-    field: "skuRange",
-  },
-  {
-    id: "channels_question",
-    type: "assistant",
-    message:
-      "Tuyệt vời! Bạn đang bán hàng trên những kênh nào? (Có thể chọn nhiều)",
-    field: "channels_question",
-  },
-  {
-    id: "channels",
-    type: "checkbox",
-    options: [
-      "Website",
-      "Facebook",
-      "Zalo",
-      "Shopee",
-      "Lazada",
-      "TikTok Shop",
-      "Khác",
-    ],
-    field: "channels",
-  },
-  {
-    id: "email_question",
-    type: "assistant",
-    message: "Để gửi báo giá chi tiết, vui lòng cho tôi email của bạn:",
-    field: "email_question",
-  },
-  {
-    id: "email",
+    id: "contact_email",
     type: "input",
     inputType: "email",
     field: "email",
     placeholder: "example@company.com",
   },
   {
-    id: "phone_question",
+    id: "contact_phone_prompt",
     type: "assistant",
-    message: "Và số điện thoại để tư vấn viên liên hệ khi cần:",
-    field: "phone_question",
+    message: "Số điện thoại nào tiện để bên mình liên hệ khi cần?",
+    field: "contact_phone_prompt",
   },
   {
-    id: "phone",
+    id: "contact_phone",
     type: "input",
     inputType: "tel",
     field: "phone",
     placeholder: "0912 345 678",
+  },
+
+  // Thông tin kinh doanh
+  {
+    id: "business_products_prompt",
+    type: "assistant",
+    message: "Công ty bạn đang kinh doanh sản phẩm hoặc dịch vụ gì?",
+    field: "business_products_prompt",
+  },
+  {
+    id: "business_products",
+    type: "input",
+    inputType: "text",
+    field: "businessProducts",
+    placeholder: "Mô tả sản phẩm/dịch vụ...",
+  },
+  {
+    id: "sku_range_prompt",
+    type: "assistant",
+    message: "Số lượng SKU/dịch vụ của công ty bạn nằm trong khoảng nào?",
+    field: "sku_range_prompt",
+  },
+  {
+    id: "sku_range",
+    type: "quick_reply",
+    options: ["Dưới 50", "50 - 200", "200 - 1000", "Trên 1000"],
+    field: "skuRange",
+  },
+  {
+    id: "avg_monthly_units_prompt",
+    type: "assistant",
+    message:
+      "Trung bình mỗi tháng công ty bán được khoảng bao nhiêu sản phẩm/dịch vụ?",
+    field: "avg_monthly_units_prompt",
+  },
+  {
+    id: "avg_monthly_units",
+    type: "input",
+    inputType: "text",
+    field: "avgMonthlyUnits",
+    placeholder: "Ví dụ: 500",
+  },
+  {
+    id: "avg_revenue_prompt",
+    type: "assistant",
+    message: "Doanh thu trung bình cho mỗi sản phẩm/dịch vụ khoảng bao nhiêu?",
+    field: "avg_revenue_prompt",
+  },
+  {
+    id: "avg_revenue",
+    type: "input",
+    inputType: "text",
+    field: "avgRevenue",
+    placeholder: "Ví dụ: 500.000 VNĐ",
+  },
+
+  // Thông tin đội sales
+  {
+    id: "sales_headcount_prompt",
+    type: "assistant",
+    message: "Hiện tại đội sales của công ty có bao nhiêu người?",
+    field: "sales_headcount_prompt",
+  },
+  {
+    id: "sales_headcount",
+    type: "input",
+    inputType: "text",
+    field: "salesHeadcount",
+    placeholder: "Ví dụ: 10",
+  },
+  {
+    id: "avg_commission_prompt",
+    type: "assistant",
+    message: "Hoa hồng trung bình cho mỗi đơn là khoảng bao nhiêu phần trăm?",
+    field: "avg_commission_prompt",
+  },
+  {
+    id: "avg_commission",
+    type: "input",
+    inputType: "text",
+    field: "avgCommission",
+    placeholder: "Ví dụ: 5%",
+  },
+
+  // Hiệu suất sales
+  {
+    id: "avg_closing_time_prompt",
+    type: "assistant",
+    message: "Một sale thường mất bao lâu để tư vấn và chốt được một đơn?",
+    field: "avg_closing_time_prompt",
+  },
+  {
+    id: "avg_closing_time",
+    type: "quick_reply",
+    options: ["Dưới 5 phút", "5 - 15 phút", "15 - 30 phút", "Trên 30 phút"],
+    field: "avgClosingTime",
+  },
+  {
+    id: "avg_close_rate_prompt",
+    type: "assistant",
+    message:
+      "Tỷ lệ chốt đơn trung bình của đội sales đang ở mức bao nhiêu phần trăm?",
+    field: "avg_close_rate_prompt",
+  },
+  {
+    id: "avg_close_rate",
+    type: "input",
+    inputType: "text",
+    field: "avgCloseRate",
+    placeholder: "Ví dụ: 30%",
+  },
+
+  // Nhân sự sales
+  {
+    id: "avg_sales_tenure_prompt",
+    type: "assistant",
+    message: "Một nhân sự sales thường gắn bó trung bình bao lâu?",
+    field: "avg_sales_tenure_prompt",
+  },
+  {
+    id: "avg_sales_tenure",
+    type: "quick_reply",
+    options: ["Dưới 3 tháng", "3 - 6 tháng", "6 - 12 tháng", "Trên 12 tháng"],
+    field: "avgSalesTenure",
+  },
+  {
+    id: "onboarding_time_prompt",
+    type: "assistant",
+    message: "Một nhân sự sales mới cần bao lâu để bắt đầu bán được?",
+    field: "onboarding_time_prompt",
+  },
+  {
+    id: "onboarding_time",
+    type: "quick_reply",
+    options: ["Dưới 1 tuần", "1 - 2 tuần", "2 - 4 tuần", "Trên 1 tháng"],
+    field: "onboardingTime",
+  },
+
+  // KPI (optional - không bắt buộc trong schema)
+  {
+    id: "sales_kpi_prompt",
+    type: "assistant",
+    message:
+      "Cuối cùng, những KPI chính mà đội sales đang theo dõi là gì? (Có thể bỏ qua nếu không muốn chia sẻ)",
+    field: "sales_kpi_prompt",
+  },
+  {
+    id: "sales_kpi",
+    type: "input",
+    inputType: "text",
+    field: "salesKpi",
+    placeholder: "Ví dụ: Doanh số, tỷ lệ chốt, số cuộc gọi...",
   },
 ];
 
@@ -195,8 +329,20 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
           email: (data.email as string) || "",
           phone: (data.phone as string) || "",
           skuRange: (data.skuRange as string) || "",
-          channels: (data.channels as string[]) || [],
-          additionalInfo: null,
+          channels: [] as string[],
+          additionalInfo: JSON.stringify({
+            companyName: data.companyName || "",
+            businessProducts: data.businessProducts || "",
+            avgMonthlyUnits: data.avgMonthlyUnits || "",
+            avgRevenue: data.avgRevenue || "",
+            salesHeadcount: data.salesHeadcount || "",
+            avgCommission: data.avgCommission || "",
+            avgClosingTime: data.avgClosingTime || "",
+            avgCloseRate: data.avgCloseRate || "",
+            avgSalesTenure: data.avgSalesTenure || "",
+            onboardingTime: data.onboardingTime || "",
+            salesKpi: data.salesKpi || "",
+          }),
         };
 
         try {
@@ -208,7 +354,9 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
         addAssistantMessage(
           `Cảm ơn ${
             data.name || "bạn"
-          }! Chúng tôi đã nhận thông tin của bạn.\n\nĐội ngũ tư vấn sẽ liên hệ qua ${
+          }! Chúng tôi đã nhận thông tin của ${
+            data.companyName || "công ty bạn"
+          }.\n\nĐội ngũ tư vấn sẽ liên hệ qua ${
             data.email || "email"
           } hoặc ${
             data.phone || "số điện thoại"
@@ -401,6 +549,16 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
                   {/* Summary of collected data */}
                   <div className="w-full max-w-xs bg-muted/50 rounded-lg p-4 mb-4 text-left space-y-2">
                     <div className="flex items-center gap-2 text-sm">
+                      <Bot className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-muted-foreground">Công ty:</span>
+                      <span
+                        className="font-medium"
+                        data-testid="text-collected-company"
+                      >
+                        {(collectedData.companyName as string) || "-"}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
                       <User className="w-4 h-4 text-muted-foreground" />
                       <span className="text-muted-foreground">Tên:</span>
                       <span
@@ -484,6 +642,7 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
                       currentStep.placeholder || "Nhập câu trả lời..."
                     }
                     onSubmit={handleUserResponse}
+                    fieldName={currentStep.field}
                   />
                 )}
 

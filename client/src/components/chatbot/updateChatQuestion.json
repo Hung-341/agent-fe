@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI Sales Agent Pricing Intake Form",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "minLength": 2,
+      "description": "Tên công ty",
+      "ui_message": "Tên công ty của bạn là gì?"
+    },
+    "contact_name": {
+      "type": "string",
+      "minLength": 2,
+      "description": "Tên người liên hệ",
+      "ui_message": "Mình có thể biết tên của bạn để tiện trao đổi không?"
+    },
+    "contact_email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254,
+      "description": "Email liên hệ",
+      "ui_message": "Bạn có thể cho mình xin email để gửi thông tin và báo giá?"
+    },
+    "contact_phone": {
+      "type": "string",
+      "pattern": "^[0-9+().\\-\\s]{6,20}$",
+      "description": "Số điện thoại",
+      "ui_message": "Số điện thoại nào tiện để bên mình liên hệ khi cần?"
+    },
+
+    "business_products_services": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 2000,
+      "description": "Sản phẩm/dịch vụ đang kinh doanh",
+      "ui_message": "Công ty bạn đang kinh doanh sản phẩm hoặc dịch vụ gì?"
+    },
+    "sku_range": {
+      "type": "string",
+      "enum": ["under_50", "50_200", "200_1000", "over_1000"],
+      "description": "Số lượng SKU/dịch vụ",
+      "ui_message": "Số lượng SKU/dịch vụ của công ty bạn nằm trong khoảng nào?"
+    },
+    "avg_monthly_units_sold": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000,
+      "description": "Số bán trung bình/tháng",
+      "ui_message": "Trung bình mỗi tháng công ty bán được khoảng bao nhiêu sản phẩm/dịch vụ?"
+    },
+    "avg_revenue_per_unit": {
+      "type": "number",
+      "minimum": 1000,
+      "maximum": 1000000000,
+      "description": "Doanh thu trung bình/đơn",
+      "ui_message": "Doanh thu trung bình cho mỗi sản phẩm/dịch vụ khoảng bao nhiêu?"
+    },
+
+    "sales_headcount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5000,
+      "description": "Số nhân sự sales",
+      "ui_message": "Hiện tại đội sales của công ty có bao nhiêu người?"
+    },
+    "avg_commission_rate_percent": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Mức hoa hồng trung bình",
+      "ui_message": "Hoa hồng trung bình cho mỗi đơn là khoảng bao nhiêu phần trăm?"
+    },
+
+    "avg_closing_time_bucket": {
+      "type": "string",
+      "enum": [
+        "under_5_minutes",
+        "5_15_minutes",
+        "15_30_minutes",
+        "over_30_minutes"
+      ],
+      "description": "Thời gian chốt đơn",
+      "ui_message": "Một sale thường mất bao lâu để tư vấn và chốt được một đơn?"
+    },
+    "avg_close_rate_percent": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Tỷ lệ chốt đơn",
+      "ui_message": "Tỷ lệ chốt đơn trung bình của đội sales đang ở mức bao nhiêu phần trăm?"
+    },
+
+    "avg_sales_tenure_bucket": {
+      "type": "string",
+      "enum": [
+        "under_3_months",
+        "3_6_months",
+        "6_12_months",
+        "over_12_months"
+      ],
+      "description": "Thời gian gắn bó sales",
+      "ui_message": "Một nhân sự sales thường gắn bó trung bình bao lâu?"
+    },
+    "onboarding_time_bucket": {
+      "type": "string",
+      "enum": [
+        "under_1_week",
+        "1_2_weeks",
+        "2_4_weeks",
+        "over_1_month"
+      ],
+      "description": "Thời gian onboarding",
+      "ui_message": "Một nhân sự sales mới cần bao lâu để bắt đầu bán được?"
+    },
+
+    "sales_kpi_description": {
+      "type": "string",
+      "minLength": 0,
+      "maxLength": 2000,
+      "description": "KPI chính của sales",
+      "ui_message": "Những KPI chính mà đội sales đang theo dõi là gì?",
+      "pattern": "^(?!([aA]+|[0-9]+)$).*$"
+    }
+  },
+  "required": [
+    "company_name",
+    "contact_name",
+    "contact_email",
+    "contact_phone",
+    "business_products_services",
+    "sku_range",
+    "avg_monthly_units_sold",
+    "avg_revenue_per_unit",
+    "sales_headcount",
+    "avg_commission_rate_percent",
+    "avg_closing_time_bucket",
+    "avg_close_rate_percent",
+    "avg_sales_tenure_bucket",
+    "onboarding_time_bucket"
+  ]
+}
