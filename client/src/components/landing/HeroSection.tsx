@@ -31,7 +31,9 @@ export function HeroSection({ onOpenChat }: HeroSectionProps) {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20"
           >
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">AI-Powered Sales Automation</span>
+            <span className="text-sm font-medium text-primary">
+              AI-Powered Sales Automation
+            </span>
           </motion.div>
 
           {/* Main Headline */}
@@ -55,8 +57,9 @@ export function HeroSection({ onOpenChat }: HeroSectionProps) {
             transition={{ delay: 0.3 }}
             className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground leading-relaxed"
           >
-            Giải pháp AI thông minh giúp tư vấn khách hàng 24/7, 
-            tăng tỷ lệ chuyển đổi và tối ưu quy trình bán hàng của bạn.
+            Giải pháp bán hàng & CSKH tự động cho doanh nghiệp Việt. Tăng hiệu
+            quả bán hàng, giảm mạnh chi phí vận hành với trải nghiệm khách hàng
+            chuyên nghiệp.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -86,21 +89,35 @@ export function HeroSection({ onOpenChat }: HeroSectionProps) {
             </Button>
           </motion.div>
 
-          {/* Trust indicators */}
+          {/* Trust indicators - Stats */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="pt-12 flex flex-col items-center gap-4"
+            className="pt-12"
           >
-            <p className="text-sm text-muted-foreground">Được tin dùng bởi hơn 500+ doanh nghiệp</p>
-            <div className="flex items-center gap-8 opacity-60">
-              {/* Placeholder company logos */}
-              <div className="w-24 h-8 bg-muted rounded" />
-              <div className="w-20 h-8 bg-muted rounded" />
-              <div className="w-28 h-8 bg-muted rounded" />
-              <div className="hidden md:block w-24 h-8 bg-muted rounded" />
-              <div className="hidden md:block w-20 h-8 bg-muted rounded" />
+            <div className="flex items-center justify-center gap-8 md:gap-12 flex-wrap">
+              {[
+                { value: "24/7", label: "Hoạt động không ngừng" },
+                { value: "100%", label: "Tự động hóa" },
+                { value: "AI", label: "Hiểu ngữ cảnh" },
+                { value: "Omni", label: "Đa kênh" },
+              ].map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.7 + index * 0.1, type: "spring" }}
+                  className="flex flex-col items-center gap-1"
+                >
+                  <div className="text-2xl md:text-3xl font-bold text-primary">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs md:text-sm text-muted-foreground text-center">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </motion.div>

@@ -34,7 +34,9 @@ export function Header({ onOpenChat }: HeaderProps) {
             <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
               <Bot className="w-5 h-5 text-primary-foreground" />
             </div>
-            <span className="text-lg font-bold hidden sm:block">AI Sales Agent</span>
+            <span className="text-lg font-bold hidden sm:block">
+              AICI Chatbot
+            </span>
           </a>
 
           {/* Desktop Navigation */}
@@ -52,13 +54,13 @@ export function Header({ onOpenChat }: HeaderProps) {
               Khách hàng
             </a>
             <a
-              href="#"
+              href="#pricing"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               Bảng giá
             </a>
             <a
-              href="#"
+              href="#contact"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               Liên hệ
@@ -81,7 +83,7 @@ export function Header({ onOpenChat }: HeaderProps) {
             >
               Nhận báo giá
             </Button>
-            
+
             {/* Mobile Menu Toggle */}
             <Button
               variant="ghost"
@@ -90,7 +92,11 @@ export function Header({ onOpenChat }: HeaderProps) {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               data-testid="button-mobile-menu-toggle"
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </Button>
           </div>
         </div>
@@ -121,14 +127,16 @@ export function Header({ onOpenChat }: HeaderProps) {
                 Khách hàng
               </a>
               <a
-                href="#"
+                href="#pricing"
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Bảng giá
               </a>
               <a
-                href="#"
+                href="#contact"
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Liên hệ
               </a>

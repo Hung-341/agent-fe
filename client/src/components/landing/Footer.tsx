@@ -40,10 +40,11 @@ export function Footer({ onOpenChat }: FooterProps) {
                 <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
                   <Bot className="w-5 h-5 text-primary-foreground" />
                 </div>
-                <span className="text-lg font-bold">AI Sales Agent</span>
+                <span className="text-lg font-bold">AICI Chatbot</span>
               </div>
               <p className="text-sm text-muted-foreground mb-4">
-                Giải pháp AI thông minh giúp tự động hóa và tối ưu quy trình bán hàng cho doanh nghiệp.
+                Giải pháp bán hàng & CSKH tự động cho doanh nghiệp Việt. Powered
+                by AICI Global.
               </p>
             </div>
 
@@ -51,10 +52,38 @@ export function Footer({ onOpenChat }: FooterProps) {
             <div>
               <h4 className="font-semibold mb-4">Sản phẩm</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#features" className="hover:text-foreground transition-colors">Tính năng</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Bảng giá</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Tích hợp</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">API</a></li>
+                <li>
+                  <a
+                    href="#features"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Tính năng
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Bảng giá
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Tích hợp
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    API
+                  </a>
+                </li>
               </ul>
             </div>
 
@@ -62,10 +91,38 @@ export function Footer({ onOpenChat }: FooterProps) {
             <div>
               <h4 className="font-semibold mb-4">Công ty</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">Về chúng tôi</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Tuyển dụng</a></li>
-                <li><a href="#testimonials" className="hover:text-foreground transition-colors">Khách hàng</a></li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Về chúng tôi
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Tuyển dụng
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#testimonials"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Khách hàng
+                  </a>
+                </li>
               </ul>
             </div>
 
@@ -75,15 +132,15 @@ export function Footer({ onOpenChat }: FooterProps) {
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex items-center gap-2">
                   <Mail className="w-4 h-4" />
-                  <span>contact@aisalesagent.vn</span>
+                  <span>kimchi@aiciglobal.com</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Phone className="w-4 h-4" />
-                  <span>1900 1234</span>
+                  <span>0903.780.128</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <MapPin className="w-4 h-4 mt-0.5" />
-                  <span>Tầng 10, Tòa nhà ABC, Quận 1, TP.HCM</span>
+                  <span>Đoàn Kim Chi - Giám đốc Kinh doanh</span>
                 </li>
               </ul>
             </div>
@@ -105,14 +162,19 @@ export function Footer({ onOpenChat }: FooterProps) {
                   className="max-w-xs"
                   data-testid="input-newsletter-email"
                 />
-                <Button data-testid="button-newsletter-subscribe">Đăng ký</Button>
+                <Button data-testid="button-newsletter-subscribe">
+                  Đăng ký
+                </Button>
               </div>
             </div>
           </div>
 
           {/* Copyright */}
           <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            <p>&copy; 2024 AI Sales Agent. Tất cả quyền được bảo lưu.</p>
+            <p>
+              &copy; 2025 AICI Global. AI Sales Agent Chatbot - Giải pháp bán
+              hàng tự động cho doanh nghiệp Việt.
+            </p>
           </div>
         </div>
       </div>

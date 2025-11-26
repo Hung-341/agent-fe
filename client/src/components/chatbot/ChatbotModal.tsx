@@ -1,6 +1,15 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, CheckCircle2, Bot, RefreshCw, Mail, Phone, User, ExternalLink } from "lucide-react";
+import {
+  X,
+  CheckCircle2,
+  Bot,
+  RefreshCw,
+  Mail,
+  Phone,
+  User,
+  ExternalLink,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ChatMessage } from "./ChatMessage";
 import { TypingIndicator } from "./TypingIndicator";
@@ -32,7 +41,8 @@ const chatScript: ChatStep[] = [
   {
     id: "greeting",
     type: "assistant",
-    message: "Xin chào! Tôi là AI Sales Agent. Rất vui được hỗ trợ bạn nhận báo giá cho giải pháp AI bán hàng.",
+    message:
+      "Xin chào! Tôi là AI Sales Agent. Rất vui được hỗ trợ bạn nhận báo giá cho giải pháp AI bán hàng.",
     field: "greeting",
   },
   {
@@ -51,7 +61,8 @@ const chatScript: ChatStep[] = [
   {
     id: "sku_question",
     type: "assistant",
-    message: "Cảm ơn bạn! Doanh nghiệp của bạn hiện đang có bao nhiêu sản phẩm (SKU)?",
+    message:
+      "Cảm ơn bạn! Doanh nghiệp của bạn hiện đang có bao nhiêu sản phẩm (SKU)?",
     field: "sku_question",
   },
   {
@@ -63,13 +74,22 @@ const chatScript: ChatStep[] = [
   {
     id: "channels_question",
     type: "assistant",
-    message: "Tuyệt vời! Bạn đang bán hàng trên những kênh nào? (Có thể chọn nhiều)",
+    message:
+      "Tuyệt vời! Bạn đang bán hàng trên những kênh nào? (Có thể chọn nhiều)",
     field: "channels_question",
   },
   {
     id: "channels",
     type: "checkbox",
-    options: ["Website", "Facebook", "Zalo", "Shopee", "Lazada", "TikTok Shop", "Khác"],
+    options: [
+      "Website",
+      "Facebook",
+      "Zalo",
+      "Shopee",
+      "Lazada",
+      "TikTok Shop",
+      "Khác",
+    ],
     field: "channels",
   },
   {
@@ -109,7 +129,9 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
-  const [collectedData, setCollectedData] = useState<Record<string, unknown>>({});
+  const [collectedData, setCollectedData] = useState<Record<string, unknown>>(
+    {}
+  );
   const [showInput, setShowInput] = useState(false);
   const [currentInputStep, setCurrentInputStep] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -158,63 +180,74 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
     setMessages((prev) => [...prev, newMessage]);
   }, []);
 
-  const processStep = useCallback(async (stepIndex: number, data: Record<string, unknown>) => {
-    if (isProcessing.current) return;
-    
-    if (stepIndex >= chatScript.length) {
-      isProcessing.current = true;
-      setIsTyping(true);
-      await new Promise((resolve) => setTimeout(resolve, 800));
-      setIsTyping(false);
-      
-      const leadData = {
-        name: data.name as string || "",
-        email: data.email as string || "",
-        phone: data.phone as string || "",
-        skuRange: data.skuRange as string || "",
-        channels: (data.channels as string[]) || [],
-        additionalInfo: null,
-      };
+  const processStep = useCallback(
+    async (stepIndex: number, data: Record<string, unknown>) => {
+      if (isProcessing.current) return;
 
-      try {
-        await submitLeadMutation.mutateAsync(leadData);
-      } catch (error) {
-        console.error("Failed to submit lead:", error);
+      if (stepIndex >= chatScript.length) {
+        isProcessing.current = true;
+        setIsTyping(true);
+        await new Promise((resolve) => setTimeout(resolve, 800));
+        setIsTyping(false);
+
+        const leadData = {
+          name: (data.name as string) || "",
+          email: (data.email as string) || "",
+          phone: (data.phone as string) || "",
+          skuRange: (data.skuRange as string) || "",
+          channels: (data.channels as string[]) || [],
+          additionalInfo: null,
+        };
+
+        try {
+          await submitLeadMutation.mutateAsync(leadData);
+        } catch (error) {
+          console.error("Failed to submit lead:", error);
+        }
+
+        addAssistantMessage(
+          `Cảm ơn ${
+            data.name || "bạn"
+          }! Chúng tôi đã nhận thông tin của bạn.\n\nĐội ngũ tư vấn sẽ liên hệ qua ${
+            data.email || "email"
+          } hoặc ${
+            data.phone || "số điện thoại"
+          } trong vòng 24 giờ để gửi báo giá chi tiết.\n\nChúc bạn một ngày tốt lành!`
+        );
+        setIsComplete(true);
+        isProcessing.current = false;
+        return;
       }
 
-      addAssistantMessage(
-        `Cảm ơn ${data.name || "bạn"}! Chúng tôi đã nhận thông tin của bạn.\n\nĐội ngũ tư vấn sẽ liên hệ qua ${data.email || "email"} hoặc ${data.phone || "số điện thoại"} trong vòng 24 giờ để gửi báo giá chi tiết.\n\nChúc bạn một ngày tốt lành!`
-      );
-      setIsComplete(true);
-      isProcessing.current = false;
-      return;
-    }
+      const step = chatScript[stepIndex];
 
-    const step = chatScript[stepIndex];
+      if (step.type === "assistant") {
+        isProcessing.current = true;
+        setShowInput(false);
+        setIsTyping(true);
+        await new Promise((resolve) =>
+          setTimeout(resolve, 600 + Math.random() * 400)
+        );
+        setIsTyping(false);
 
-    if (step.type === "assistant") {
-      isProcessing.current = true;
-      setShowInput(false);
-      setIsTyping(true);
-      await new Promise((resolve) => setTimeout(resolve, 600 + Math.random() * 400));
-      setIsTyping(false);
-      
-      if (step.message) {
-        addAssistantMessage(step.message);
+        if (step.message) {
+          addAssistantMessage(step.message);
+        }
+
+        isProcessing.current = false;
+        const nextIndex = stepIndex + 1;
+        setCurrentStepIndex(nextIndex);
+
+        await new Promise((resolve) => setTimeout(resolve, 200));
+        processStep(nextIndex, data);
+      } else {
+        const inputIndex = inputSteps.findIndex((s) => s.id === step.id);
+        setCurrentInputStep(inputIndex + 1);
+        setShowInput(true);
       }
-      
-      isProcessing.current = false;
-      const nextIndex = stepIndex + 1;
-      setCurrentStepIndex(nextIndex);
-      
-      await new Promise((resolve) => setTimeout(resolve, 200));
-      processStep(nextIndex, data);
-    } else {
-      const inputIndex = inputSteps.findIndex((s) => s.id === step.id);
-      setCurrentInputStep(inputIndex + 1);
-      setShowInput(true);
-    }
-  }, [addAssistantMessage, submitLeadMutation]);
+    },
+    [addAssistantMessage, submitLeadMutation]
+  );
 
   useEffect(() => {
     if (isOpen && !hasStarted.current) {
@@ -226,7 +259,7 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
       setShowInput(false);
       setCurrentInputStep(0);
       isProcessing.current = false;
-      
+
       setTimeout(() => {
         processStep(0, {});
       }, 300);
@@ -235,20 +268,20 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
 
   const handleUserResponse = async (value: string | string[]) => {
     const currentStep = chatScript[currentStepIndex];
-    
+
     const displayValue = Array.isArray(value) ? value.join(", ") : value;
     addUserMessage(displayValue);
-    
+
     const newData = {
       ...collectedData,
       [currentStep.field]: value,
     };
     setCollectedData(newData);
-    
+
     setShowInput(false);
-    
+
     await new Promise((resolve) => setTimeout(resolve, 300));
-    
+
     const nextIndex = currentStepIndex + 1;
     setCurrentStepIndex(nextIndex);
     processStep(nextIndex, newData);
@@ -264,7 +297,7 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
     setCurrentInputStep(0);
     hasStarted.current = false;
     isProcessing.current = false;
-    
+
     setTimeout(() => {
       hasStarted.current = true;
       processStep(0, {});
@@ -306,7 +339,7 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-lg md:h-[80vh] md:max-h-[700px] z-50 flex flex-col bg-background border border-border rounded-2xl shadow-2xl overflow-hidden"
+            className="fixed inset-4 md:inset-auto md:bottom-6 md:right-6 md:top-auto md:left-auto md:w-full md:max-w-lg md:h-[85vh] md:max-h-[600px] z-50 flex flex-col bg-background border border-border rounded-2xl shadow-2xl overflow-hidden"
             data-testid="chatbot-modal"
           >
             {/* Header */}
@@ -317,7 +350,9 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
                 </div>
                 <div>
                   <h3 className="font-semibold text-sm">AI Sales Agent</h3>
-                  <p className="text-xs text-muted-foreground">Tư vấn báo giá</p>
+                  <p className="text-xs text-muted-foreground">
+                    Tư vấn báo giá
+                  </p>
                 </div>
               </div>
               <Button
@@ -339,39 +374,12 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
             )}
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3">
               {messages.map((message) => (
                 <ChatMessage key={message.id} message={message} />
               ))}
-              
-              {isTyping && <TypingIndicator />}
 
-              {/* Input Area based on current step */}
-              {showInput && currentStep && !isComplete && (
-                <div className="pt-2">
-                  {currentStep.type === "quick_reply" && currentStep.options && (
-                    <QuickReplyChips
-                      options={currentStep.options}
-                      onSelect={handleUserResponse}
-                    />
-                  )}
-                  
-                  {currentStep.type === "input" && currentStep.inputType && (
-                    <ChatInput
-                      inputType={currentStep.inputType}
-                      placeholder={currentStep.placeholder || "Nhập câu trả lời..."}
-                      onSubmit={handleUserResponse}
-                    />
-                  )}
-                  
-                  {currentStep.type === "checkbox" && currentStep.options && (
-                    <CheckboxGroup
-                      options={currentStep.options}
-                      onSubmit={handleUserResponse}
-                    />
-                  )}
-                </div>
-              )}
+              {isTyping && <TypingIndicator />}
 
               {/* Completion State */}
               {isComplete && (
@@ -383,40 +391,71 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
                   <div className="w-16 h-16 rounded-full bg-chart-2/10 flex items-center justify-center mb-4">
                     <CheckCircle2 className="w-8 h-8 text-chart-2" />
                   </div>
-                  <h4 className="font-semibold text-lg mb-2">Đã nhận thông tin!</h4>
+                  <h4 className="font-semibold text-lg mb-2">
+                    Đã nhận thông tin!
+                  </h4>
                   <p className="text-sm text-muted-foreground mb-4">
                     Chúng tôi sẽ liên hệ trong 24 giờ
                   </p>
-                  
+
                   {/* Summary of collected data */}
                   <div className="w-full max-w-xs bg-muted/50 rounded-lg p-4 mb-4 text-left space-y-2">
                     <div className="flex items-center gap-2 text-sm">
                       <User className="w-4 h-4 text-muted-foreground" />
                       <span className="text-muted-foreground">Tên:</span>
-                      <span className="font-medium" data-testid="text-collected-name">{collectedData.name as string || "-"}</span>
+                      <span
+                        className="font-medium"
+                        data-testid="text-collected-name"
+                      >
+                        {(collectedData.name as string) || "-"}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
                       <Mail className="w-4 h-4 text-muted-foreground" />
                       <span className="text-muted-foreground">Email:</span>
-                      <span className="font-medium" data-testid="text-collected-email">{collectedData.email as string || "-"}</span>
+                      <span
+                        className="font-medium"
+                        data-testid="text-collected-email"
+                      >
+                        {(collectedData.email as string) || "-"}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
                       <Phone className="w-4 h-4 text-muted-foreground" />
                       <span className="text-muted-foreground">SĐT:</span>
-                      <span className="font-medium" data-testid="text-collected-phone">{collectedData.phone as string || "-"}</span>
+                      <span
+                        className="font-medium"
+                        data-testid="text-collected-phone"
+                      >
+                        {(collectedData.phone as string) || "-"}
+                      </span>
                     </div>
                   </div>
-                  
+
                   <div className="flex flex-col gap-2 w-full max-w-xs">
-                    <Button onClick={handleViewDetails} className="w-full" data-testid="button-view-details">
+                    <Button
+                      onClick={handleViewDetails}
+                      className="w-full"
+                      data-testid="button-view-details"
+                    >
                       <ExternalLink className="w-4 h-4 mr-2" />
                       Xem chi tiết
                     </Button>
                     <div className="flex gap-2">
-                      <Button variant="outline" onClick={handleClose} className="flex-1" data-testid="button-close-complete">
+                      <Button
+                        variant="outline"
+                        onClick={handleClose}
+                        className="flex-1"
+                        data-testid="button-close-complete"
+                      >
                         Đóng
                       </Button>
-                      <Button variant="outline" onClick={handleReset} className="flex-1" data-testid="button-start-new">
+                      <Button
+                        variant="outline"
+                        onClick={handleReset}
+                        className="flex-1"
+                        data-testid="button-start-new"
+                      >
                         <RefreshCw className="w-4 h-4 mr-2" />
                         Mới
                       </Button>
@@ -427,6 +466,35 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
 
               <div ref={messagesEndRef} />
             </div>
+
+            {/* Fixed Input Area at Bottom */}
+            {showInput && currentStep && !isComplete && (
+              <div className="border-t border-border bg-background p-3">
+                {currentStep.type === "quick_reply" && currentStep.options && (
+                  <QuickReplyChips
+                    options={currentStep.options}
+                    onSelect={handleUserResponse}
+                  />
+                )}
+
+                {currentStep.type === "input" && currentStep.inputType && (
+                  <ChatInput
+                    inputType={currentStep.inputType}
+                    placeholder={
+                      currentStep.placeholder || "Nhập câu trả lời..."
+                    }
+                    onSubmit={handleUserResponse}
+                  />
+                )}
+
+                {currentStep.type === "checkbox" && currentStep.options && (
+                  <CheckboxGroup
+                    options={currentStep.options}
+                    onSubmit={handleUserResponse}
+                  />
+                )}
+              </div>
+            )}
           </motion.div>
         </>
       )}

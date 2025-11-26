@@ -1,47 +1,53 @@
 import { motion } from "framer-motion";
-import { 
-  Bot, 
-  MessageSquare, 
-  BarChart3, 
-  Zap, 
-  Clock, 
+import {
+  Bot,
+  MessageSquare,
+  BarChart3,
+  Zap,
+  Clock,
   Shield,
   Users,
   TrendingUp,
-  Globe
+  Globe,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const features = [
   {
     icon: Bot,
-    title: "AI Thông Minh",
-    description: "Chatbot được huấn luyện để hiểu và phản hồi tự nhiên như một nhân viên bán hàng chuyên nghiệp.",
+    title: "AI Hiểu Ngữ Cảnh",
+    description:
+      "Tư vấn đúng sản phẩm, đúng nhu cầu với ngôn ngữ tự nhiên giống người thật. Không lệch câu hỏi, không nhầm lẫn.",
   },
   {
     icon: Clock,
     title: "Hoạt Động 24/7",
-    description: "Không bỏ lỡ bất kỳ khách hàng tiềm năng nào, AI luôn sẵn sàng tư vấn mọi lúc.",
+    description:
+      "AI Agent luôn sẵn sàng tư vấn, chốt đơn bất kỳ lúc nào. Không bỏ lỡ khách hàng tiềm năng.",
   },
   {
     icon: MessageSquare,
-    title: "Đa Kênh",
-    description: "Tích hợp liền mạch với Website, Facebook, Zalo và các nền tảng phổ biến khác.",
-  },
-  {
-    icon: BarChart3,
-    title: "Analytics Chi Tiết",
-    description: "Theo dõi hiệu suất, tỷ lệ chuyển đổi và insight khách hàng realtime.",
+    title: "End-to-End Automation",
+    description:
+      "Vận hành hoàn chỉnh: Hỏi nhu cầu → Tư vấn → Chốt đơn → Lên đơn → Hoàn tất đơn hàng tự động.",
   },
   {
     icon: Zap,
-    title: "Phản Hồi Tức Thì",
-    description: "Thời gian phản hồi dưới 1 giây, không để khách hàng phải chờ đợi.",
+    title: "Tích Hợp Omnichannel",
+    description:
+      "Kết nối mọi kênh: Website, Facebook, Zalo, CRM, Google Sheet. Dễ dàng tích hợp mọi hệ thống.",
   },
   {
-    icon: Shield,
-    title: "Bảo Mật Cao",
-    description: "Dữ liệu khách hàng được mã hóa và bảo vệ theo tiêu chuẩn quốc tế.",
+    icon: TrendingUp,
+    title: "Tự Động Lên Đơn",
+    description:
+      "AI tự động tạo đơn hàng, lấy thông tin khách, phân tuyến và gửi form. Tiết kiệm 80% thời gian xử lý.",
+  },
+  {
+    icon: BarChart3,
+    title: "Phân Tích Dữ Liệu",
+    description:
+      "Tracking toàn bộ hành trình khách hàng, phân tích data để tối ưu chiến lược bán hàng.",
   },
 ];
 
@@ -68,7 +74,8 @@ export function FeaturesSection() {
             Tính năng <span className="text-primary">nổi bật</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            AI Sales Agent được thiết kế để tối ưu hóa quy trình bán hàng và mang lại trải nghiệm tốt nhất cho khách hàng.
+            AI Sales Agent được thiết kế để tối ưu hóa quy trình bán hàng và
+            mang lại trải nghiệm tốt nhất cho khách hàng.
           </p>
         </motion.div>
 
@@ -87,7 +94,9 @@ export function FeaturesSection() {
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                     <feature.icon className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                  <h3 className="text-lg font-semibold mb-2">
+                    {feature.title}
+                  </h3>
                   <p className="text-muted-foreground">{feature.description}</p>
                 </CardContent>
               </Card>
@@ -119,7 +128,9 @@ export function FeaturesSection() {
                 <div className="text-3xl md:text-4xl font-bold text-foreground mb-1">
                   {stat.value}
                 </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div className="text-sm text-muted-foreground">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </div>
