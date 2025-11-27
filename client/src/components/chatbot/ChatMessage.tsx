@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import { Bot } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import type { ChatMessage as ChatMessageType } from "@shared/schema";
 
 interface ChatMessageProps {
@@ -19,11 +17,18 @@ export function ChatMessage({ message }: ChatMessageProps) {
       data-testid={`chat-message-${message.role}-${message.id}`}
     >
       {isAssistant && (
-        <Avatar className="w-8 h-8 flex-shrink-0">
-          <AvatarFallback className="bg-primary text-primary-foreground">
-            <Bot className="w-4 h-4" />
-          </AvatarFallback>
-        </Avatar>
+        <div 
+          className="w-8 h-8 flex-shrink-0 rounded-full overflow-hidden"
+          style={{ background: 'linear-gradient(to right, #48469d, #633e91, #c62b94)' }}
+        >
+          <div className="w-full h-full flex items-center justify-center">
+            <img
+              src="/AICI-square.png"
+              alt="AICI"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
       )}
       
       <div

@@ -17,8 +17,8 @@ export function FloatingChatButton({ onClick }: FloatingChatButtonProps) {
       <motion.div
         animate={{
           boxShadow: [
-            "0 0 0 0 rgba(59, 130, 246, 0.4)",
-            "0 0 0 15px rgba(59, 130, 246, 0)",
+            "0 0 0 0 rgba(72, 70, 157, 0.4)",
+            "0 0 0 15px rgba(72, 70, 157, 0)",
           ],
         }}
         transition={{
@@ -31,7 +31,8 @@ export function FloatingChatButton({ onClick }: FloatingChatButtonProps) {
         <Button
           onClick={onClick}
           size="lg"
-          className="w-16 h-16 rounded-full shadow-lg shadow-primary/25"
+          className="w-16 h-16 rounded-full shadow-lg shadow-primary/25 text-white"
+          style={{ background: 'linear-gradient(to right, #48469d, #633e91, #c62b94)' }}
           data-testid="button-floating-chat"
         >
           <MessageCircle className="w-6 h-6" />
