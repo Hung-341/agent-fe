@@ -8,7 +8,7 @@ const testimonials = [
     name: "Nguyễn Văn Minh",
     role: "CEO, TechViet JSC",
     content:
-      "AI Sales Agent đã giúp chúng tôi tăng 40% tỷ lệ chuyển đổi khách hàng trong 3 tháng đầu triển khai. Đội ngũ sales giờ có thể tập trung vào các deal lớn hơn.",
+      "Customer Service Agent đã giúp chúng tôi tăng 40% tỷ lệ chuyển đổi khách hàng trong 3 tháng đầu triển khai. Đội ngũ sales giờ có thể tập trung vào các deal lớn hơn.",
     rating: 5,
     initials: "NM",
   },
@@ -87,7 +87,7 @@ export function SocialProofSection() {
                   Được tin dùng bởi các thương hiệu hàng đầu
                 </h3>
                 <p className="text-muted-foreground">
-                  Từ startup đến tập đoàn lớn, AI Sales Agent là lựa chọn của
+                  Từ startup đến tập đoàn lớn, Customer Service Agent là lựa chọn của
                   nhiều doanh nghiệp
                 </p>
               </div>
@@ -153,7 +153,7 @@ export function SocialProofSection() {
             Khách hàng <span className="text-primary">nói gì về chúng tôi</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Hơn 500 doanh nghiệp đã tin tưởng và sử dụng AI Sales Agent để tối
+            Hơn 500 doanh nghiệp đã tin tưởng và sử dụng Customer Service Agent để tối
             ưu hóa quy trình bán hàng.
           </p>
         </motion.div>

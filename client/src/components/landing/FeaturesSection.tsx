@@ -74,7 +74,7 @@ export function FeaturesSection() {
             Tính năng <span className="text-primary">nổi bật</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            AI Sales Agent được thiết kế để tối ưu hóa quy trình bán hàng và
+            Customer Service Agent được thiết kế để tối ưu hóa quy trình bán hàng và
             mang lại trải nghiệm tốt nhất cho khách hàng.
           </p>
         </motion.div>

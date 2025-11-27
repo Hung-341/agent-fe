@@ -43,7 +43,7 @@ const chatScript: ChatStep[] = [
     id: "greeting",
     type: "assistant",
     message:
-      "Xin chào! Tôi là AI Sales Agent. Rất vui được hỗ trợ bạn nhận báo giá cho giải pháp AI bán hàng.",
+      "Xin chào! Tôi là Customer Service Agent. Rất vui được hỗ trợ bạn nhận báo giá cho giải pháp AI bán hàng.",
     field: "greeting",
   },
   {

@@ -2,7 +2,7 @@ services:
   - type: web
     name: aici-chatbot
     runtime: node
-    nodeVersion: "18"
+    nodeVersion: "20"
     region: singapore
     plan: free
     buildCommand: npm install && npm run build

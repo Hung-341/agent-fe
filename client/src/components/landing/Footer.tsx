@@ -172,7 +172,7 @@ export function Footer({ onOpenChat }: FooterProps) {
           {/* Copyright */}
           <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
             <p>
-              &copy; 2025 AICI Global. AI Sales Agent Chatbot - Giải pháp bán
+              &copy; 2025 AICI Global. Customer Service Agent Chatbot - Giải pháp bán
               hàng tự động cho doanh nghiệp Việt.
             </p>
           </div>

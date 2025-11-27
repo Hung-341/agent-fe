@@ -114,7 +114,7 @@ export function ContactSection({ onOpenChat }: ContactSectionProps) {
                   Nhận báo giá ngay
                 </h3>
                 <p className="text-muted-foreground mb-8">
-                  Trò chuyện với AI Sales Agent của chúng tôi để nhận báo giá
+                  Trò chuyện với Customer Service Agent của chúng tôi để nhận báo giá
                   chi tiết trong vòng 5 phút
                 </p>
 
