@@ -238,7 +238,8 @@ export function ChatInput({ inputType, placeholder, onSubmit, disabled, fieldNam
           }}
           placeholder={placeholder}
           disabled={disabled}
-          className={`flex-1 ${error ? "border-destructive focus-visible:ring-destructive" : ""}`}
+          className={`flex-1 ${error ? "border-destructive focus-visible:ring-destructive" : "focus-visible:ring-[#48469d]"}`}
+          style={{ borderColor: error ? undefined : '#48469d40' }}
           data-testid={`chat-input-${inputType}`}
         />
         {isOptional && (
@@ -258,6 +259,8 @@ export function ChatInput({ inputType, placeholder, onSubmit, disabled, fieldNam
           type="submit"
           size="icon"
           disabled={disabled || (!value.trim() && !isOptional)}
+          className="text-white"
+          style={{ background: 'linear-gradient(to right, #48469d, #633e91, #c62b94)' }}
           data-testid="button-send-message"
         >
           <Send className="w-4 h-4" />

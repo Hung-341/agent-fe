@@ -35,8 +35,9 @@ export function ChatMessage({ message }: ChatMessageProps) {
         className={`max-w-[80%] px-4 py-3 rounded-2xl ${
           isAssistant
             ? "bg-muted text-foreground rounded-tl-md"
-            : "bg-primary text-primary-foreground rounded-tr-md"
+            : "text-white rounded-tr-md"
         }`}
+        style={!isAssistant ? { background: 'linear-gradient(to right, #48469d, #633e91, #c62b94)' } : undefined}
       >
         <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
       </div>

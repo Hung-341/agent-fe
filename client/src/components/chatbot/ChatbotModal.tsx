@@ -537,9 +537,22 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
     }, 100);
   };
 
+  // Chỉ ẩn modal, không reset state
+  const handleBackdropClick = () => {
+    onClose();
+  };
+
+  // Reset state và đóng modal khi nhấn nút X
   const handleClose = () => {
     hasStarted.current = false;
     isProcessing.current = false;
+    setMessages([]);
+    setCurrentStepIndex(0);
+    setIsTyping(false);
+    setIsComplete(false);
+    setCollectedData({});
+    setShowInput(false);
+    setCurrentInputStep(0);
     onClose();
   };
 
@@ -561,7 +574,7 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={handleClose}
+            onClick={handleBackdropClick}
             className="fixed inset-0 bg-background/60 backdrop-blur-sm z-40"
             data-testid="chatbot-backdrop"
           />
