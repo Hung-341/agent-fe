@@ -53,6 +53,13 @@ const chatScript: ChatStep[] = [
       "Trước tiên mình xin phép thu thập một vài thông tin nhanh để đề xuất gói phù hợp nhất cho bạn.",
     field: "intro",
   },
+  {
+    id: "privacy_commitment",
+    type: "assistant",
+    message:
+      "Mọi thông tin bạn cung cấp sẽ được bảo mật tuyệt đối và chỉ sử dụng cho mục đích tư vấn.",
+    field: "privacy_commitment",
+  },
 
   // Thông tin công ty & liên hệ
   {
@@ -329,15 +336,34 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
 
   const submitLeadMutation = useMutation({
     mutationFn: async (data: {
+      companyName: string;
       name: string;
       email: string;
       phone: string;
+      businessProducts: string;
       skuRange: string;
-      channels: string[];
-      additionalInfo: string | null;
+      avgMonthlyUnits: string;
+      avgRevenue: string;
+      salesHeadcount: string;
+      avgCommission: string;
+      avgClosingTime: string;
+      avgCloseRate: string;
+      avgSalesTenure: string;
+      onboardingTime: string;
+      salesKpi: string;
     }) => {
-      const response = await apiRequest("POST", "/api/leads", data);
-      return response.json();
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbyVD4V3QDzLOPtEnWbLqe8UVHIc7cYYfWMio-AnGq9K7geqem4UjJTflKjn6-gQuVU/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      return response;
     },
   });
 
@@ -380,24 +406,21 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
         setIsTyping(false);
 
         const leadData = {
+          companyName: (data.companyName as string) || "",
           name: (data.name as string) || "",
           email: (data.email as string) || "",
           phone: (data.phone as string) || "",
+          businessProducts: (data.businessProducts as string) || "",
           skuRange: (data.skuRange as string) || "",
-          channels: [] as string[],
-          additionalInfo: JSON.stringify({
-            companyName: data.companyName || "",
-            businessProducts: data.businessProducts || "",
-            avgMonthlyUnits: data.avgMonthlyUnits || "",
-            avgRevenue: data.avgRevenue || "",
-            salesHeadcount: data.salesHeadcount || "",
-            avgCommission: data.avgCommission || "",
-            avgClosingTime: data.avgClosingTime || "",
-            avgCloseRate: data.avgCloseRate || "",
-            avgSalesTenure: data.avgSalesTenure || "",
-            onboardingTime: data.onboardingTime || "",
-            salesKpi: data.salesKpi || "",
-          }),
+          avgMonthlyUnits: (data.avgMonthlyUnits as string) || "",
+          avgRevenue: (data.avgRevenue as string) || "",
+          salesHeadcount: (data.salesHeadcount as string) || "",
+          avgCommission: (data.avgCommission as string) || "",
+          avgClosingTime: (data.avgClosingTime as string) || "",
+          avgCloseRate: (data.avgCloseRate as string) || "",
+          avgSalesTenure: (data.avgSalesTenure as string) || "",
+          onboardingTime: (data.onboardingTime as string) || "",
+          salesKpi: (data.salesKpi as string) || "",
         };
 
         try {
