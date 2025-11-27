@@ -63,6 +63,13 @@ const chatScript: ChatStep[] = [
 
   // Thông tin công ty & liên hệ
   {
+    id: "contact_info_transition",
+    type: "assistant",
+    message:
+      "Đầu tiên, cho mình xin một vài thông tin cơ bản về công ty và cách liên hệ với bạn nhé.",
+    field: "contact_info_transition",
+  },
+  {
     id: "company_name_prompt",
     type: "assistant",
     message: "Tên công ty của bạn là gì?",
