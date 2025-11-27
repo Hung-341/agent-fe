@@ -45,10 +45,47 @@ export function HeroSection({ onOpenChat }: HeroSectionProps) {
           >
             <span className="text-foreground">Tự động hóa bán hàng với</span>
             <br />
-            <span className="bg-gradient-to-r from-primary via-primary to-chart-3 bg-clip-text text-transparent">
+            <span 
+              className="bg-clip-text text-transparent"
+              style={{ backgroundImage: 'linear-gradient(to right, #48469d, #633e91, #c62b94)' }}
+            >
               AI Sales Agent
             </span>
           </motion.h1>
+
+          {/* CTA Buttons - Mobile: show here with pulse effect, Desktop: hidden */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ delay: 1, type: "spring", stiffness: 200 }}
+            className="flex md:hidden items-center justify-center pt-4"
+          >
+            <motion.div
+              animate={{
+                boxShadow: [
+                  "0 0 0 0 rgba(59, 130, 246, 0.4)",
+                  "0 0 0 15px rgba(59, 130, 246, 0)",
+                ],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatDelay: 1,
+              }}
+              className="rounded-xl"
+            >
+              <Button
+                size="lg"
+                onClick={onOpenChat}
+                className="group px-8 py-6 text-lg font-semibold rounded-xl shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300"
+                data-testid="button-hero-cta-mobile"
+              >
+                <Bot className="w-5 h-5 mr-2" />
+                Nhận báo giá ngay
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </motion.div>
+          </motion.div>
 
           {/* Subheadline */}
           <motion.p
@@ -62,12 +99,12 @@ export function HeroSection({ onOpenChat }: HeroSectionProps) {
             chuyên nghiệp.
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - Desktop: show here, Mobile: hidden */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
+            className="hidden md:flex items-center justify-center pt-4"
           >
             <Button
               size="lg"
@@ -79,18 +116,18 @@ export function HeroSection({ onOpenChat }: HeroSectionProps) {
               Nhận báo giá ngay
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button
+            {/* <Button
               variant="outline"
               size="lg"
               className="px-8 py-6 text-lg font-semibold rounded-xl"
               data-testid="button-hero-secondary"
             >
               Tìm hiểu thêm
-            </Button>
+            </Button> */}
           </motion.div>
 
-          {/* Trust indicators - Stats */}
-          <motion.div
+          {/* Trust indicators - Stats - Hidden */}
+          {/* <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
@@ -119,11 +156,11 @@ export function HeroSection({ onOpenChat }: HeroSectionProps) {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
 
-        {/* Hero Image / Dashboard Preview */}
-        <motion.div
+        {/* Hero Image / Dashboard Preview - Hidden */}
+        {/* <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
@@ -163,7 +200,7 @@ export function HeroSection({ onOpenChat }: HeroSectionProps) {
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

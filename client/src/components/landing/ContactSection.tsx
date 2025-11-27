@@ -143,7 +143,7 @@ export function ContactSection({ onOpenChat }: ContactSectionProps) {
         >
           <Card className="overflow-hidden">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62873.02709804268!2d106.8296376!3d10.8364205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDUwJzExLjEiTiAxMDbCsDQ5JzQ2LjciRQ!5e0!3m2!1svi!2s!4v1234567890"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.0227880879797!2d106.66124824038107!3d10.809566400721014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175298e2c46567b%3A0x5dfa081a0965cf1f!2zTeG7mWMgR2lhIExhbmQ!5e0!3m2!1svi!2s!4v1764207752901!5m2!1svi!2s"
               width="100%"
               height="400"
               style={{ border: 0 }}

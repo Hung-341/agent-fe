@@ -29,18 +29,18 @@ export function Header({ onOpenChat }: HeaderProps) {
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
+          {/* Logo - Hidden */}
+          {/* <a href="/" className="flex items-center gap-2">
             <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
               <Bot className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="text-lg font-bold hidden sm:block">
               AICI Chatbot
             </span>
-          </a>
+          </a> */}
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation - Hidden */}
+          {/* <nav className="hidden md:flex items-center gap-8">
             <a
               href="#features"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
@@ -65,10 +65,10 @@ export function Header({ onOpenChat }: HeaderProps) {
             >
               Liên hệ
             </a>
-          </nav>
+          </nav> */}
 
-          {/* CTA Buttons */}
-          <div className="flex items-center gap-3">
+          {/* CTA Buttons - Hidden */}
+          {/* <div className="flex items-center gap-3">
             <Button
               variant="ghost"
               className="hidden md:inline-flex"
@@ -84,7 +84,6 @@ export function Header({ onOpenChat }: HeaderProps) {
               Nhận báo giá
             </Button>
 
-            {/* Mobile Menu Toggle */}
             <Button
               variant="ghost"
               size="icon"
@@ -98,12 +97,12 @@ export function Header({ onOpenChat }: HeaderProps) {
                 <Menu className="w-5 h-5" />
               )}
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
+      {/* Mobile Menu - Hidden */}
+      {/* <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
@@ -157,7 +156,7 @@ export function Header({ onOpenChat }: HeaderProps) {
             </nav>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </header>
   );
 }

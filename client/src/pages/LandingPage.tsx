@@ -25,12 +25,12 @@ export default function LandingPage() {
       <Header onOpenChat={handleOpenChat} />
       <main>
         <HeroSection onOpenChat={handleOpenChat} />
-        <FeaturesSection />
-        <SocialProofSection />
-        <PricingSection onOpenChat={handleOpenChat} />
-        <ContactSection onOpenChat={handleOpenChat} />
+        {/* <FeaturesSection /> */}
+        {/* <SocialProofSection /> */}
+        {/* <PricingSection onOpenChat={handleOpenChat} /> */}
+        {/* <ContactSection onOpenChat={handleOpenChat} /> */}
       </main>
-      <Footer onOpenChat={handleOpenChat} />
+      {/* <Footer onOpenChat={handleOpenChat} /> */}
 
       {/* Floating Chat Button */}
       <FloatingChatButton onClick={handleOpenChat} />

@@ -12,7 +12,7 @@ export function FloatingChatButton({ onClick }: FloatingChatButtonProps) {
       initial={{ opacity: 0, scale: 0, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ delay: 1, type: "spring", stiffness: 200 }}
-      className="fixed bottom-6 right-6 z-30"
+      className="hidden md:block fixed bottom-6 right-6 z-30"
     >
       <motion.div
         animate={{

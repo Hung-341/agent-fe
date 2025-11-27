@@ -39,14 +39,14 @@ const testimonials = [
 ];
 
 const companies = [
-  { name: "MBS", color: "#1E3A8A" },
-  { name: "10X VALUE", color: "#F59E0B" },
-  { name: "OneAds", color: "#EF4444" },
-  { name: "SeniArt", color: "#8B5CF6" },
-  { name: "Mộc Gia – Office & Coworking", color: "#059669" },
-  { name: "MB", color: "#1D4ED8" },
-  { name: "VietinBank", color: "#DC2626" },
-  { name: "FPT Polytechnic", color: "#F97316" },
+  { name: "MBS", color: "#1E3A8A", logo: "/mbs.jpg" },
+  { name: "10X VALUE", color: "#F59E0B", logo: "/10x-value.jpg" },
+  { name: "OneAds", color: "#EF4444", logo: "/oneads.jpg" },
+  { name: "SeniArt", color: "#8B5CF6", logo: "/seniart.jpg" },
+  { name: "Mộc Gia", color: "#059669", logo: "/mocgia.jpg" },
+  { name: "MB", color: "#1D4ED8", logo: "/Mb.jpg" },
+  { name: "VietinBank", color: "#DC2626", logo: "/vietinbanl.jpg" },
+  { name: "FPT Polytechnic", color: "#F97316", logo: "/fpt.jpg" },
 ];
 
 export function SocialProofSection() {
@@ -127,12 +127,12 @@ export function SocialProofSection() {
                           background: `linear-gradient(135deg, ${company.color}10, transparent)`,
                         }}
                       />
-                      <span
-                        className="relative font-bold text-xl transition-all duration-300 group-hover:scale-110"
-                        style={{ color: company.color }}
-                      >
-                        {company.name}
-                      </span>
+                      <img
+                        src={company.logo}
+                        alt={company.name}
+                        className="relative h-10 w-auto max-w-[160px] object-contain transition-all duration-300 group-hover:scale-110"
+                        loading="lazy"
+                      />
                     </div>
                   ))}
                 </motion.div>

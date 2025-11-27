@@ -46,8 +46,15 @@ const chatScript: ChatStep[] = [
       "Xin chào! Tôi là AI Sales Agent. Rất vui được hỗ trợ bạn nhận báo giá cho giải pháp AI bán hàng.",
     field: "greeting",
   },
+  {
+    id: "intro",
+    type: "assistant",
+    message:
+      "Trước tiên mình xin phép thu thập một vài thông tin nhanh để đề xuất gói phù hợp nhất cho bạn.",
+    field: "intro",
+  },
 
-  // Thông tin liên hệ
+  // Thông tin công ty & liên hệ
   {
     id: "company_name_prompt",
     type: "assistant",
@@ -73,6 +80,13 @@ const chatScript: ChatStep[] = [
     inputType: "text",
     field: "name",
     placeholder: "Nhập tên của bạn...",
+  },
+  {
+    id: "contact_transition",
+    type: "assistant",
+    message:
+      "Cảm ơn bạn. Mình xin thêm vài thông tin liên hệ để gửi báo giá chi tiết.",
+    field: "contact_transition",
   },
   {
     id: "contact_email_prompt",
@@ -103,9 +117,16 @@ const chatScript: ChatStep[] = [
 
   // Thông tin kinh doanh
   {
+    id: "business_transition",
+    type: "assistant",
+    message:
+      "Rồi, bây giờ mình tìm hiểu qua hoạt động kinh doanh của công ty nhé.",
+    field: "business_transition",
+  },
+  {
     id: "business_products_prompt",
     type: "assistant",
-    message: "Công ty bạn đang kinh doanh sản phẩm hoặc dịch vụ gì?",
+    message: "Công ty bạn đang kinh doanh đơn hàng thuộc lĩnh vực nào?",
     field: "business_products_prompt",
   },
   {
@@ -113,12 +134,12 @@ const chatScript: ChatStep[] = [
     type: "input",
     inputType: "text",
     field: "businessProducts",
-    placeholder: "Mô tả sản phẩm/dịch vụ...",
+    placeholder: "Mô tả lĩnh vực kinh doanh...",
   },
   {
     id: "sku_range_prompt",
     type: "assistant",
-    message: "Số lượng SKU/dịch vụ của công ty bạn nằm trong khoảng nào?",
+    message: "Số lượng loại đơn hàng/SKU của công ty bạn nằm trong khoảng nào?",
     field: "sku_range_prompt",
   },
   {
@@ -128,10 +149,17 @@ const chatScript: ChatStep[] = [
     field: "skuRange",
   },
   {
+    id: "customer_volume_transition",
+    type: "assistant",
+    message:
+      "Hiểu rõ lưu lượng khách sẽ giúp mình tính toán chính xác hơn.",
+    field: "customer_volume_transition",
+  },
+  {
     id: "avg_monthly_units_prompt",
     type: "assistant",
     message:
-      "Trung bình mỗi tháng công ty bán được khoảng bao nhiêu sản phẩm/dịch vụ?",
+      "Trung bình mỗi tháng có bao nhiêu khách hàng liên hệ qua tin nhắn, và trong số đó tỷ lệ khách hàng cũ chiếm bao nhiêu phần trăm?",
     field: "avg_monthly_units_prompt",
   },
   {
@@ -139,12 +167,12 @@ const chatScript: ChatStep[] = [
     type: "input",
     inputType: "text",
     field: "avgMonthlyUnits",
-    placeholder: "Ví dụ: 500",
+    placeholder: "Ví dụ: 200 khách/tháng, 30% khách cũ",
   },
   {
     id: "avg_revenue_prompt",
     type: "assistant",
-    message: "Doanh thu trung bình cho mỗi sản phẩm/dịch vụ khoảng bao nhiêu?",
+    message: "Doanh thu trung bình cho mỗi đơn hàng khoảng bao nhiêu?",
     field: "avg_revenue_prompt",
   },
   {
@@ -156,6 +184,13 @@ const chatScript: ChatStep[] = [
   },
 
   // Thông tin đội sales
+  {
+    id: "sales_team_transition",
+    type: "assistant",
+    message:
+      "Tiếp theo, mình cần vài thông tin về đội sales hiện tại.",
+    field: "sales_team_transition",
+  },
   {
     id: "sales_headcount_prompt",
     type: "assistant",
@@ -172,7 +207,7 @@ const chatScript: ChatStep[] = [
   {
     id: "avg_commission_prompt",
     type: "assistant",
-    message: "Hoa hồng trung bình cho mỗi đơn là khoảng bao nhiêu phần trăm?",
+    message: "Hoa hồng trung bình cho mỗi đơn hàng là khoảng bao nhiêu phần trăm?",
     field: "avg_commission_prompt",
   },
   {
@@ -185,9 +220,16 @@ const chatScript: ChatStep[] = [
 
   // Hiệu suất sales
   {
+    id: "sales_process_transition",
+    type: "assistant",
+    message:
+      "Cảm ơn bạn. Giờ mình sẽ hỏi thêm một chút về quy trình bán hàng.",
+    field: "sales_process_transition",
+  },
+  {
     id: "avg_closing_time_prompt",
     type: "assistant",
-    message: "Một sale thường mất bao lâu để tư vấn và chốt được một đơn?",
+    message: "Một sale thường mất bao lâu để tư vấn và chốt được một đơn hàng?",
     field: "avg_closing_time_prompt",
   },
   {
@@ -200,7 +242,7 @@ const chatScript: ChatStep[] = [
     id: "avg_close_rate_prompt",
     type: "assistant",
     message:
-      "Tỷ lệ chốt đơn trung bình của đội sales đang ở mức bao nhiêu phần trăm?",
+      "Tỷ lệ chốt đơn trung bình của bộ phận sales đối với khách hàng cũ và khách hàng mới lần lượt là bao nhiêu phần trăm?",
     field: "avg_close_rate_prompt",
   },
   {
@@ -208,10 +250,17 @@ const chatScript: ChatStep[] = [
     type: "input",
     inputType: "text",
     field: "avgCloseRate",
-    placeholder: "Ví dụ: 30%",
+    placeholder: "Ví dụ: Khách cũ 50%, khách mới 20%",
   },
 
   // Nhân sự sales
+  {
+    id: "hr_transition",
+    type: "assistant",
+    message:
+      "Mình cần nốt vài thông tin về nhân sự để hoàn thiện phân tích.",
+    field: "hr_transition",
+  },
   {
     id: "avg_sales_tenure_prompt",
     type: "assistant",
@@ -237,12 +286,18 @@ const chatScript: ChatStep[] = [
     field: "onboardingTime",
   },
 
-  // KPI (optional - không bắt buộc trong schema)
+  // KPI
+  {
+    id: "kpi_transition",
+    type: "assistant",
+    message:
+      "Câu cuối cùng để hoàn chỉnh bức tranh tổng quan.",
+    field: "kpi_transition",
+  },
   {
     id: "sales_kpi_prompt",
     type: "assistant",
-    message:
-      "Cuối cùng, những KPI chính mà đội sales đang theo dõi là gì? (Có thể bỏ qua nếu không muốn chia sẻ)",
+    message: "Những KPI chính mà đội sales đang theo dõi là gì?",
     field: "sales_kpi_prompt",
   },
   {
@@ -374,7 +429,7 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
         setShowInput(false);
         setIsTyping(true);
         await new Promise((resolve) =>
-          setTimeout(resolve, 600 + Math.random() * 400)
+          setTimeout(resolve, 1000)
         );
         setIsTyping(false);
 
@@ -386,7 +441,7 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
         const nextIndex = stepIndex + 1;
         setCurrentStepIndex(nextIndex);
 
-        await new Promise((resolve) => setTimeout(resolve, 200));
+        await new Promise((resolve) => setTimeout(resolve, 300));
         processStep(nextIndex, data);
       } else {
         const inputIndex = inputSteps.findIndex((s) => s.id === step.id);
@@ -493,11 +548,15 @@ export function ChatbotModal({ isOpen, onClose }: ChatbotModalProps) {
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-card">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                  <Bot className="w-5 h-5 text-primary-foreground" />
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
+                  <img
+                    src="/AICI-2.png"
+                    alt="AICI Sales Agent"
+                    className="w-10 h-10 object-contain"
+                  />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm">AI Sales Agent</h3>
+                  <h3 className="font-semibold text-sm">AICI Sales Agent</h3>
                   <p className="text-xs text-muted-foreground">
                     Tư vấn báo giá
                   </p>

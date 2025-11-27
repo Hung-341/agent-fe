@@ -18,10 +18,12 @@ type ValidationRule = {
 
 const fieldValidationRules: Record<string, ValidationRule> = {
   avgMonthlyUnits: {
-    type: "integer",
+    type: "string",
     required: true,
-    min: 0,
-    max: 1000000,
+    minLength: 3,
+    maxLength: 200,
+    pattern: /^(?!([aA]+|[0-9]+)$).*$/,
+    patternMessage: "Vui lòng nhập đầy đủ thông tin (số khách và tỷ lệ khách cũ)",
   },
   avgRevenue: {
     type: "currency",
@@ -42,10 +44,12 @@ const fieldValidationRules: Record<string, ValidationRule> = {
     max: 100,
   },
   avgCloseRate: {
-    type: "number",
+    type: "string",
     required: true,
-    min: 0,
-    max: 100,
+    minLength: 3,
+    maxLength: 200,
+    pattern: /^(?!([aA]+|[0-9]+)$).*$/,
+    patternMessage: "Vui lòng nhập đầy đủ tỷ lệ chốt đơn (khách cũ và khách mới)",
   },
   salesKpi: {
     type: "string",
